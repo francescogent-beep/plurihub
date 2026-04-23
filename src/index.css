@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+:root {
+  --color-base: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+  --color-border: #1e1e1e;
+  --color-border-bright: #2a2a2a;
+  --color-blue: #0EA5E9;
+  --color-cyan: #06B6D4;
+  --color-blue-dim: rgba(14,165,233,0.12);
+  --color-blue-glow: rgba(14,165,233,0.25);
+  --color-text: #ffffff;
+  --color-muted: #a1a1aa;
+  --color-muted-2: #52525b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Dot grid background */
+.dot-grid {
+  background-image: radial-gradient(circle, #1e1e1e 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Glow utilities */
+.glow-blue {
+  box-shadow: 0 0 24px rgba(14,165,233,0.3), 0 0 48px rgba(14,165,233,0.1);
+}
+
+.glow-blue-sm {
+  box-shadow: 0 0 12px rgba(14,165,233,0.25);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Chrome tab shape */
+.chrome-tab {
+  clip-path: polygon(0 100%, 0 12px, 8px 0, calc(100% - 8px) 0, 100% 12px, 100% 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #0EA5E9; }
+
+/* Accordion animation */
+.accordion-content {
+  overflow: hidden;
+}
+
+/* Animated underline on hover */
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #0EA5E9;
+  transition: width 0.3s ease;
+}
+.hover-underline:hover::after { width: 100%; }
