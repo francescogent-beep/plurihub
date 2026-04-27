@@ -122,29 +122,6 @@ const PRICING = [
   },
 ]
 
-const TESTIMONIALS = [
-  {
-    text: 'Finally killed my 40-tab ChatGPT habit. This is everything I wanted.',
-    handle: '@0xdev_',
-    role: 'Full-stack engineer',
-    avatar: 'D',
-    color: '#10B981',
-  },
-  {
-    text: 'This is what browser AI should have been from day 1. Ships context, kills tabs.',
-    handle: '@dsgn_sarah',
-    role: 'Product designer',
-    avatar: 'S',
-    color: '#6366F1',
-  },
-  {
-    text: 'I switch between Claude and GPT 30 times a day. PluriHub made that effortless.',
-    handle: '@rustacean_mike',
-    role: 'Systems engineer',
-    avatar: 'M',
-    color: '#D97706',
-  },
-]
 
 const PROBLEM_CARDS = [
   {
