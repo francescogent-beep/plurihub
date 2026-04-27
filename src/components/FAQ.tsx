@@ -4,28 +4,32 @@ import { Plus } from 'lucide-react'
 
 const FAQS = [
   {
-    q: 'Does this slow down my browser?',
-    a: 'No. PluriHub lazy-loads each AI chat only when you open it. The sidebar itself is a lightweight panel — it adds less than 30ms to page load time. Your RAM-hungry tab habit was the problem, not the solution.',
+    q: 'What does PluriHub actually do?',
+    a: 'PluriHub is a Chrome extension that lets you save and organize AI conversations from ChatGPT, Claude, Gemini, and 8 other providers in one place. Open any AI chat, hit Save, and it shows up in your sidebar — organized by space, searchable, and accessible from any website.',
   },
   {
-    q: 'Can I use it with my ChatGPT Plus account?',
-    a: "Yes. PluriHub uses your existing browser sessions — it doesn't create new accounts or store your credentials. Just sign in to ChatGPT, Claude, or Gemini once in the sidebar, and it remembers your session.",
+    q: 'Does this slow down my browser?',
+    a: 'No. PluriHub is a lightweight side panel — it adds less than 30ms to page load time. It only activates when you open it, so it has zero impact while you browse normally.',
+  },
+  {
+    q: 'Do I need to sign up for new AI accounts?',
+    a: 'No. PluriHub works with your existing accounts. Just open ChatGPT, Claude, Gemini, or any supported provider as you normally would, and save conversations directly from their pages. We never touch your credentials or session data.',
   },
   {
     q: 'Does it work on all websites?',
-    a: 'Almost all. The sidebar appears on any site you visit. The only exception is the Chrome Web Store itself (Chrome security policy prevents extensions from injecting into the store page).',
+    a: 'The PluriHub panel is accessible from any website. Saving chats works on the supported AI provider pages (ChatGPT, Claude, Gemini, and 8 others). The only exception is the Chrome Web Store itself, where Chrome security policy blocks extension injection.',
   },
   {
     q: 'What data do you collect?',
-    a: "None. PluriHub is a fully client-side extension. Your conversations go directly to OpenAI, Anthropic, and Google — they never touch our servers. We don't even have analytics. Zero telemetry.",
+    a: "None of your chat content. PluriHub saves links and metadata locally and syncs them to your account. Your actual conversations stay between you and the AI provider — they never pass through our servers. Zero telemetry.",
   },
   {
     q: 'What about mobile?',
-    a: "Chrome extensions only work on desktop Chrome. PluriHub is desktop-only for now. A Safari extension for macOS is on the roadmap, and we're tracking demand for mobile use cases.",
+    a: "Chrome extensions only work on desktop Chrome. PluriHub is desktop-only for now. A Safari extension for macOS is on the roadmap.",
   },
   {
     q: 'Can I use multiple accounts for the same AI?',
-    a: 'Pro plan supports multiple account profiles per AI. You can have Work ChatGPT and Personal ChatGPT as separate sessions — switch between them from the sidebar header.',
+    a: 'Pro plan lets you save chats from multiple accounts per AI provider — for example, a work ChatGPT and a personal ChatGPT — and organize them into separate spaces.',
   },
 ]
 

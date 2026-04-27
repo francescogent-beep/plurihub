@@ -78,6 +78,18 @@ body {
   overflow: hidden;
 }
 
+/* Provider tape marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 /* Animated underline on hover */
 .hover-underline {
   position: relative;

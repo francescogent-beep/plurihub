@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Layout, Zap, Archive, FolderOpen, Shield,
-  Star, ArrowRight, ChevronDown,
+  ArrowRight,
   Globe, Users, CheckCircle2
 } from 'lucide-react'
 
@@ -25,6 +25,7 @@ function ChromeIcon({ size = 16, className = '' }: { size?: number; className?: 
   )
 }
 import BrowserMockup from './components/BrowserMockup'
+import ProviderTape from './components/ProviderTape'
 import PluriHubMark from './components/PluriHubMark'
 import FeatureCard from './components/FeatureCard'
 import ComparisonTable from './components/ComparisonTable'
@@ -104,7 +105,7 @@ const PRICING = [
   },
   {
     plan: 'Pro',
-    price: '$4.99',
+    price: '$3.99',
     period: '/mo',
     description: 'For power users who live in AI tools all day.',
     features: [
@@ -255,12 +256,12 @@ export default function App() {
       <Navbar />
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-40 pb-28 px-6 text-center">
+      <section className="relative pt-40 pb-20 px-6 text-center">
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none"
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse at center, rgba(14,165,233,0.18) 0%, transparent 70%)',
+              'radial-gradient(ellipse at center, rgba(14,165,233,0.15) 0%, transparent 65%)',
           }}
         />
 
@@ -290,15 +291,16 @@ export default function App() {
           </h1>
 
           <p className="text-[#a1a1aa] text-xl leading-relaxed mb-12 max-w-lg mx-auto">
-            Chrome extension for power users tired of juggling ChatGPT, Claude, and Gemini
-            across{' '}
+            Save, organize, and revisit AI conversations from ChatGPT, Claude, Gemini, and{' '}
+            <span className="text-white">8 more tools</span>
+            {' '}— without juggling{' '}
             <span className="text-white line-through decoration-[#ef4444]/60">
               47 different tabs
             </span>
             .
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center mb-10">
             <motion.a
               href={CHROME_STORE_URL}
               whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(14,165,233,0.45)' }}
@@ -309,34 +311,28 @@ export default function App() {
               Add to Chrome — Free
               <ArrowRight size={16} />
             </motion.a>
-            <a
-              href="#demo"
-              className="flex items-center gap-2 text-[#71717a] hover:text-white text-sm transition-colors"
-            >
-              See it in action <ChevronDown size={14} />
-            </a>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#52525b]">
-            <span className="flex items-center gap-1.5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={11} className="text-yellow-400 fill-yellow-400" />
-              ))}
-              <span className="ml-0.5">4.8 on Chrome Web Store</span>
-            </span>
-            <span className="w-px h-3 bg-[#2a2a2a]" />
-            <span>500+ power users</span>
-            <span className="w-px h-3 bg-[#2a2a2a]" />
             <span>Free forever. No credit card.</span>
+            <span className="w-px h-3 bg-[#2a2a2a]" />
+            <span>11 AI providers</span>
+            <span className="w-px h-3 bg-[#2a2a2a]" />
+            <span>Chrome desktop</span>
           </div>
         </motion.div>
+      </section>
 
+      {/* ─── PROVIDER TAPE ─── */}
+      <ProviderTape />
+
+      {/* ─── MOCKUP ─── */}
+      <section className="py-20 px-4">
         <motion.div
-          id="demo"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="mt-20 px-4 max-w-5xl mx-auto"
+          transition={{ delay: 0.3, duration: 0.7 }}
+          className="max-w-5xl mx-auto"
         >
           <BrowserMockup />
         </motion.div>
@@ -503,57 +499,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* ─── SOCIAL PROOF ─── */}
-      <section className="py-28 px-6 border-t border-[#1e1e1e]">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <div className="flex items-center justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={20} className="text-yellow-400 fill-yellow-400" />
-              ))}
-            </div>
-            <p className="text-3xl font-bold text-white mb-2">4.8 stars · 500+ users</p>
-            <p className="text-[#52525b] text-sm">
-              Chrome Web Store · Trusted by developers
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-20px' }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-                whileHover={{ y: -3 }}
-                className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-6 hover:border-[#2a2a2a] transition-all"
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0"
-                    style={{ background: t.color + '22', color: t.color }}
-                  >
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <p className="text-white text-sm font-semibold">{t.handle}</p>
-                    <p className="text-[#52525b] text-xs mt-0.5">{t.role}</p>
-                  </div>
-                  <div className="ml-auto text-[#52525b] text-sm font-bold">𝕏</div>
-                </div>
-                <p className="text-[#a1a1aa] text-sm leading-relaxed">"{t.text}"</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── PRICING ─── */}
       <section id="pricing" className="py-28 px-6 border-t border-[#1e1e1e]">
         <div className="max-w-3xl mx-auto">
@@ -584,7 +529,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center text-[#52525b] text-xs mt-8"
           >
-            All plans include unlimited AI chats. Pro adds power-user features.
+            Free plan included. Pro unlocks unlimited workspaces, prompts, and priority support.
           </motion.p>
         </div>
       </section>
@@ -634,7 +579,7 @@ export default function App() {
               <span className="text-gradient">Start building.</span>
             </h2>
             <p className="text-[#a1a1aa] text-xl mb-12 max-w-lg mx-auto leading-relaxed">
-              Join 500+ developers who closed their AI tabs and opened one sidebar.
+              Join 500+ users who closed their AI tabs and opened one sidebar.
             </p>
 
             <motion.a
@@ -671,7 +616,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2.5">
             <PluriHubMark height={15} className="text-[#52525b]" />
-            <span className="text-[#52525b] text-sm">PluriHub © 2025</span>
+            <span className="text-[#52525b] text-sm">PluriHub © 2026</span>
           </div>
 
           <div className="flex items-center gap-6 text-xs text-[#52525b]">
