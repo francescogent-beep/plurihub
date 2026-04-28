@@ -1,11 +1,22 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   Layout, Zap, Archive, FolderOpen, Shield,
-  ArrowRight,
   Globe, Users, CheckCircle2
 } from 'lucide-react'
-import LegalModal from './components/LegalModal'
+import BrowserMockup from './components/BrowserMockup'
+import ProviderTape from './components/ProviderTape'
+import PluriHubMark from './components/PluriHubMark'
+import FeatureCard from './components/FeatureCard'
+import ComparisonTable from './components/ComparisonTable'
+import PricingCard from './components/PricingCard'
+import FAQ from './components/FAQ'
+import WaitlistForm from './components/WaitlistForm'
+import CookieBanner from './components/CookieBanner'
+
+// TODO: set this once your extension is approved on the Chrome Web Store
+// export const CHROME_STORE_URL = 'https://chrome.google.com/webstore/detail/plurihub/<your-extension-id>'
 
 function ChromeIcon({ size = 16, className = '' }: { size?: number; className?: string }) {
   return (
@@ -25,15 +36,6 @@ function ChromeIcon({ size = 16, className = '' }: { size?: number; className?: 
     </svg>
   )
 }
-import BrowserMockup from './components/BrowserMockup'
-import ProviderTape from './components/ProviderTape'
-import PluriHubMark from './components/PluriHubMark'
-import FeatureCard from './components/FeatureCard'
-import ComparisonTable from './components/ComparisonTable'
-import PricingCard from './components/PricingCard'
-import FAQ from './components/FAQ'
-
-const CHROME_STORE_URL = 'https://chrome.google.com/webstore/detail/plurihub/ID'
 
 const FEATURES = [
   {
@@ -64,7 +66,7 @@ const FEATURES = [
   {
     icon: Shield,
     title: 'Privacy First',
-    description: 'Zero data collection. Your chats never touch our servers. Ever.',
+    description: 'Your conversations never touch our servers. Only metadata is stored — never chat content.',
   },
 ]
 
@@ -101,7 +103,6 @@ const PRICING = [
       'Cmd+Shift+P toggle',
       'Context preservation',
     ],
-    cta: 'Add to Chrome — Free',
     highlighted: false,
   },
   {
@@ -117,12 +118,10 @@ const PRICING = [
       'Early access to new integrations',
       'All Free features',
     ],
-    cta: 'Start Pro Free Trial',
     highlighted: true,
     badge: 'Most Popular',
   },
 ]
-
 
 const PROBLEM_CARDS = [
   {
@@ -215,13 +214,13 @@ function Navbar() {
         </div>
 
         <motion.a
-          href={CHROME_STORE_URL}
+          href="#waitlist"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           className="flex items-center gap-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
         >
           <ChromeIcon size={14} />
-          Add to Chrome
+          Get Early Access
         </motion.a>
       </div>
     </motion.nav>
@@ -229,8 +228,6 @@ function Navbar() {
 }
 
 export default function App() {
-  const [legalDoc, setLegalDoc] = useState<'privacy' | 'terms' | null>(null)
-
   return (
     <div className="min-h-screen bg-[#0a0a0a] dot-grid text-white overflow-x-hidden">
       <Navbar />
@@ -258,7 +255,7 @@ export default function App() {
             className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/8 text-[#0EA5E9] text-xs font-medium"
           >
             <ChromeIcon size={12} />
-            Official Chrome Extension
+            Chrome Extension · Launching Soon
             <span className="w-1.5 h-1.5 rounded-full bg-[#28C840] animate-pulse inline-block" />
           </motion.div>
 
@@ -280,17 +277,8 @@ export default function App() {
             .
           </p>
 
-          <div className="flex items-center justify-center mb-10">
-            <motion.a
-              href={CHROME_STORE_URL}
-              whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(14,165,233,0.45)' }}
-              whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-3 bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg transition-all"
-            >
-              <ChromeIcon size={18} />
-              Add to Chrome — Free
-              <ArrowRight size={16} />
-            </motion.a>
+          <div id="waitlist" className="flex justify-center mb-10">
+            <WaitlistForm size="lg" />
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#52525b]">
@@ -559,19 +547,12 @@ export default function App() {
               <span className="text-gradient">Start building.</span>
             </h2>
             <p className="text-[#a1a1aa] text-xl mb-12 max-w-lg mx-auto leading-relaxed">
-              Join 500+ users who closed their AI tabs and opened one sidebar.
+              Be first in line when PluriHub launches on the Chrome Web Store.
             </p>
 
-            <motion.a
-              href={CHROME_STORE_URL}
-              whileHover={{ scale: 1.04, boxShadow: '0 0 48px rgba(14,165,233,0.45)' }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] text-white font-bold px-10 py-5 rounded-xl text-lg transition-all"
-            >
-              <ChromeIcon size={22} />
-              Add to Chrome — Free
-              <ArrowRight size={18} />
-            </motion.a>
+            <div className="flex justify-center">
+              <WaitlistForm size="lg" />
+            </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs text-[#52525b]">
               <span className="flex items-center gap-1.5">
@@ -591,8 +572,6 @@ export default function App() {
         </div>
       </section>
 
-      <LegalModal doc={legalDoc} onClose={() => setLegalDoc(null)} />
-
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-[#1e1e1e] py-12 px-8">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -602,23 +581,14 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-6 text-xs text-[#52525b]">
-            <button
-              onClick={() => setLegalDoc('privacy')}
-              className="hover:text-white transition-colors hover-underline cursor-pointer"
-            >
+            <Link to="/privacy" className="hover:text-white transition-colors hover-underline">
               Privacy
-            </button>
-            <button
-              onClick={() => setLegalDoc('terms')}
-              className="hover:text-white transition-colors hover-underline cursor-pointer"
-            >
+            </Link>
+            <Link to="/terms" className="hover:text-white transition-colors hover-underline">
               Terms
-            </button>
+            </Link>
             <a href="mailto:info@plurihub.com" className="hover:text-white transition-colors hover-underline">
               Support
-            </a>
-            <a href={CHROME_STORE_URL} className="hover:text-white transition-colors hover-underline">
-              Chrome Store
             </a>
           </div>
 
@@ -628,6 +598,8 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      <CookieBanner />
     </div>
   )
 }

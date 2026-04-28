@@ -7,14 +7,13 @@ interface PricingCardProps {
   period?: string
   description: string
   features: string[]
-  cta: string
   highlighted?: boolean
   badge?: string
   index: number
 }
 
 export default function PricingCard({
-  plan, price, period, description, features, cta, highlighted, badge, index
+  plan, price, period, description, features, highlighted, badge, index
 }: PricingCardProps) {
   return (
     <motion.div
@@ -46,7 +45,7 @@ export default function PricingCard({
         <p className="text-[#71717a] text-sm leading-relaxed">{description}</p>
       </div>
 
-      <ul className="space-y-3 flex-1 mb-8">
+      <ul className="space-y-3">
         {features.map((feat, i) => (
           <li key={i} className="flex items-start gap-3">
             <Check size={15} className={`mt-0.5 flex-shrink-0 ${highlighted ? 'text-[#0EA5E9]' : 'text-[#52525b]'}`} />
@@ -54,19 +53,6 @@ export default function PricingCard({
           </li>
         ))}
       </ul>
-
-      <motion.a
-        href="https://chrome.google.com/webstore/detail/plurihub/ID"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className={`block text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
-          highlighted
-            ? 'bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] text-white hover:opacity-90'
-            : 'bg-[#1a1a1a] border border-[#2a2a2a] text-[#a1a1aa] hover:text-white hover:border-[#0EA5E9]/30'
-        }`}
-      >
-        {cta}
-      </motion.a>
     </motion.div>
   )
 }

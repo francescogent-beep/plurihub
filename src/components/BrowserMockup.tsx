@@ -169,8 +169,8 @@ const SPLIT_PANELS = [
     provider: 'ChatGPT',
     Icon: ChatGPTIcon,
     providerLabel: 'ChatGPT',
-    userMsg: 'this is how purihub works',
-    aiMsg: 'How PluriHub works:\n1. Install the browser extension.\n2. Browse websites normally.\n3. When you find useful information, PluriHub lets you save, organize, and reuse it instantly.',
+    userMsg: 'How does PluriHub work?',
+    aiMsg: 'How PluriHub works:\n1. Install the browser extension.\n2. Browse websites normally.\n3. Save any AI conversation in one click — PluriHub organizes and reopens it instantly.',
   },
   {
     id: 'gemini',
@@ -179,7 +179,7 @@ const SPLIT_PANELS = [
     Icon: GeminiIcon,
     providerLabel: 'Gemini',
     userMsg: 'all your ai chats in one place',
-    aiMsg: null,
+    aiMsg: 'Great idea! Having all your AI conversations centralized makes switching between tools seamless. What providers are you currently using?',
   },
 ]
 
@@ -236,13 +236,7 @@ function SplitChatPanel({
               {panel.userMsg}
             </div>
           </div>
-          {panel.aiMsg ? (
-            <div className="text-[10px] text-[#374151] leading-relaxed whitespace-pre-line">{panel.aiMsg}</div>
-          ) : (
-            <div className="border border-[#e5e7eb] rounded-xl px-3 py-3 text-[10px] text-[#9ca3af]">
-              Chiedi a Gemini
-            </div>
-          )}
+          <div className="text-[10px] text-[#374151] leading-relaxed whitespace-pre-line">{panel.aiMsg}</div>
         </div>
         <div className="px-3 py-2 border-t border-[#f0f0f0]">
           <div className="bg-[#f9fafb] border border-[#e5e7eb] rounded-xl px-3 py-2 flex items-center gap-2">
@@ -413,6 +407,37 @@ export default function BrowserMockup() {
                         <div className="flex flex-1 overflow-hidden">
                           {SPLIT_PANELS.map(panel => (
                             <SplitChatPanel key={panel.id} panel={panel} onClose={() => setSplitView(false)} />
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* ── BOARD ── */}
+                    {!splitView && activeNav === 'board' && (
+                      <motion.div key="board" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.12 }} className="flex flex-col flex-1 overflow-y-auto">
+                        <div className="px-3 pt-3 pb-2 border-b border-[#f0f0f0]">
+                          <div className="flex items-center justify-between mb-0.5">
+                            <span className="text-sm font-semibold text-[#111]">Board</span>
+                            <span className="text-[9px] text-[#059669] border border-[#d1fae5] rounded px-1.5 py-0.5 bg-[#ecfdf5] font-medium">Live</span>
+                          </div>
+                          <p className="text-[10px] text-[#9ca3af]">Your AI activity at a glance.</p>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 px-3 pt-3 pb-1">
+                          {[['3', 'Chats'], ['1', 'Space'], ['5', 'Prompts']].map(([val, label]) => (
+                            <div key={label} className="border border-[#e5e7eb] rounded-xl p-2 text-center">
+                              <p className="text-base font-bold text-[#111]">{val}</p>
+                              <p className="text-[8px] text-[#9ca3af]">{label}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="px-3 mt-3">
+                          <p className="text-[9px] font-semibold text-[#9ca3af] uppercase tracking-widest mb-2">Recent</p>
+                          {CHATS.map(chat => (
+                            <div key={chat.id} className="flex items-center gap-2 py-2 border-b border-[#f5f5f5] last:border-0">
+                              <chat.Icon size={18} />
+                              <p className="text-[10px] font-medium text-[#111] flex-1 truncate">{chat.title}</p>
+                              <span className="text-[8px] text-[#9ca3af] flex-shrink-0">{chat.provider}</span>
+                            </div>
                           ))}
                         </div>
                       </motion.div>
