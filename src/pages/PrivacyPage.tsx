@@ -34,7 +34,7 @@ export default function PrivacyPage() {
         <PrivacyContent />
 
         <p className="text-[#2a2a2a] text-xs text-center mt-14 pt-6 border-t border-[#1a1a1a]">
-          PluriHub · Individual developer · Spain · info@plurihub.com
+          Francesco Gentile · Calle Malaga 4, Murcia 30006 · Spain · info@plurihub.com
         </p>
       </main>
 

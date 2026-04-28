@@ -29,7 +29,7 @@ export function PrivacyContent() {
       <p className="text-[#52525b] text-xs mb-8">Last updated: April 2026 · Applies to the PluriHub Chrome Extension</p>
 
       <SectionTitle>1. Who We Are</SectionTitle>
-      <P>PluriHub is a Chrome extension developed and operated by an individual developer based in Spain. For GDPR purposes, the data controller is: <strong className="text-white">[Your Full Name]</strong>, [Your Address], Spain. All privacy-related enquiries: <a href="mailto:info@plurihub.com" className="text-[#0EA5E9] hover:underline">info@plurihub.com</a></P>
+      <P>PluriHub is a Chrome extension developed and operated by an individual developer based in Spain. For GDPR purposes, the data controller is: <strong className="text-white">Francesco Gentile</strong>, Calle Malaga 4, Murcia 30006, Spain. All privacy-related enquiries: <a href="mailto:info@plurihub.com" className="text-[#0EA5E9] hover:underline">info@plurihub.com</a></P>
 
       <SectionTitle>2. Our Approach to Data</SectionTitle>
       <P>PluriHub is built with a privacy-first philosophy. We collect the absolute minimum data necessary to operate the service. We do not store sensitive information in readable form — all data managed through our infrastructure is handled by Supabase, a secure and certified database provider, and is stored in encrypted or vectorised (numerical) form. We never read, store, or transmit the content of your AI conversations.</P>
