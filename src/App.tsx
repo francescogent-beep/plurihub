@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Globe, Users, CheckCircle2
 } from 'lucide-react'
+import LegalModal from './components/LegalModal'
 
 function ChromeIcon({ size = 16, className = '' }: { size?: number; className?: string }) {
   return (
@@ -228,6 +229,8 @@ function Navbar() {
 }
 
 export default function App() {
+  const [legalDoc, setLegalDoc] = useState<'privacy' | 'terms' | null>(null)
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] dot-grid text-white overflow-x-hidden">
       <Navbar />
@@ -588,6 +591,8 @@ export default function App() {
         </div>
       </section>
 
+      <LegalModal doc={legalDoc} onClose={() => setLegalDoc(null)} />
+
       {/* ─── FOOTER ─── */}
       <footer className="border-t border-[#1e1e1e] py-12 px-8">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -597,15 +602,24 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-6 text-xs text-[#52525b]">
-            {['Privacy', 'Terms', 'Support', 'Chrome Store'].map(link => (
-              <a
-                key={link}
-                href="#"
-                className="hover:text-white transition-colors hover-underline"
-              >
-                {link}
-              </a>
-            ))}
+            <button
+              onClick={() => setLegalDoc('privacy')}
+              className="hover:text-white transition-colors hover-underline cursor-pointer"
+            >
+              Privacy
+            </button>
+            <button
+              onClick={() => setLegalDoc('terms')}
+              className="hover:text-white transition-colors hover-underline cursor-pointer"
+            >
+              Terms
+            </button>
+            <a href="mailto:info@plurihub.com" className="hover:text-white transition-colors hover-underline">
+              Support
+            </a>
+            <a href={CHROME_STORE_URL} className="hover:text-white transition-colors hover-underline">
+              Chrome Store
+            </a>
           </div>
 
           <div className="flex items-center gap-1.5 text-xs text-[#52525b]">
