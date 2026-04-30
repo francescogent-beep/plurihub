@@ -9,11 +9,13 @@ interface PricingCardProps {
   features: string[]
   highlighted?: boolean
   badge?: string
+  href: string
+  cta: string
   index: number
 }
 
 export default function PricingCard({
-  plan, price, period, description, features, highlighted, badge, index
+  plan, price, period, description, features, highlighted, badge, href, cta, index
 }: PricingCardProps) {
   return (
     <motion.div
@@ -45,7 +47,7 @@ export default function PricingCard({
         <p className="text-[#71717a] text-sm leading-relaxed">{description}</p>
       </div>
 
-      <ul className="space-y-3">
+      <ul className="space-y-3 mb-8">
         {features.map((feat, i) => (
           <li key={i} className="flex items-start gap-3">
             <Check size={15} className={`mt-0.5 flex-shrink-0 ${highlighted ? 'text-[#0EA5E9]' : 'text-[#52525b]'}`} />
@@ -53,6 +55,23 @@ export default function PricingCard({
           </li>
         ))}
       </ul>
+
+      <div className="mt-auto">
+        <motion.a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className={`flex items-center justify-center w-full py-3 rounded-xl text-sm font-semibold transition-colors ${
+            highlighted
+              ? 'bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] text-white hover:from-[#0284C7] hover:to-[#0EA5E9]'
+              : 'bg-[#1a1a1a] text-[#a1a1aa] hover:bg-[#222] hover:text-white border border-[#2a2a2a]'
+          }`}
+        >
+          {cta}
+        </motion.a>
+      </div>
     </motion.div>
   )
 }

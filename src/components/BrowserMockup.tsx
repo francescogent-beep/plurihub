@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import {
   X, Lock, Plus, LayoutGrid, MessageSquare, FolderOpen,
   BookOpen, Settings, ChevronRight, RefreshCw, Search, Trash2,
@@ -263,6 +263,24 @@ export default function BrowserMockup() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [splitView, setSplitView] = useState(false)
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const mouseX = useMotionValue(0.5)
+  const mouseY = useMotionValue(0.5)
+  const rotateX = useSpring(useTransform(mouseY, [0, 1], [4, -4]), { stiffness: 200, damping: 25 })
+  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-5, 5]), { stiffness: 200, damping: 25 })
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = wrapperRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseX.set((e.clientX - rect.left) / rect.width)
+    mouseY.set((e.clientY - rect.top) / rect.height)
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0.5)
+    mouseY.set(0.5)
+  }
+
   function handleNavClick(id: NavId) {
     setActiveNav(id)
     setSplitView(false)
@@ -271,11 +289,17 @@ export default function BrowserMockup() {
   const navActive = splitView ? 'chats' : activeNav
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
+    <div ref={wrapperRef} className="relative w-full max-w-4xl mx-auto" style={{ perspective: 1200 }}
+      onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <div className="absolute inset-0 -z-10 blur-3xl opacity-20 bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] rounded-3xl" />
 
       {/* Browser chrome */}
-      <div className="rounded-xl overflow-hidden border border-[#2a2a2a] shadow-2xl bg-[#111]">
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        animate={{ y: [-6, 6, -6] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+        className="rounded-xl overflow-hidden border border-[#2a2a2a] shadow-2xl bg-[#111]"
+      >
         {/* Title bar */}
         <div className="bg-[#1a1a1a] px-4 pt-3 pb-0 border-b border-[#222]">
           <div className="flex items-center gap-2 mb-3">
@@ -678,7 +702,7 @@ export default function BrowserMockup() {
             )}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
 
       {/* Caption */}
       <div className="flex items-center justify-center gap-6 mt-4 text-xs text-[#52525b]">

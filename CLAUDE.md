@@ -23,9 +23,9 @@ src/
     FeatureCard.tsx        — Individual feature card
     LegalContent.tsx       — Shared privacy/terms content (SectionTitle, P, Li, Ul, PrivacyContent, TermsContent)
     PluriHubMark.tsx       — SVG logo mark
-    PricingCard.tsx        — Pricing tier card (accepts href prop, defaults to '#waitlist')
+    PricingCard.tsx        — Pricing tier card (accepts href + cta props, both point to CHROME_STORE_URL)
     ProviderTape.tsx       — Scrolling marquee of AI provider logos
-    WaitlistForm.tsx       — Email capture form (Formspree, pre-launch CTA replacement)
+    WaitlistForm.tsx       — Email capture form (Formspree) — no longer used; kept for reference
 
   pages/
     PrivacyPage.tsx        — Full page at /privacy (updates document.title)
@@ -34,25 +34,16 @@ src/
 
 ---
 
-## Pre-launch CTA strategy
+## CTA strategy — extension is LIVE on CWS
 
-The extension is **not yet on the Chrome Web Store**. All CTAs use the waitlist flow:
+`CHROME_STORE_URL` is set in `App.tsx` to the live extension URL.
 
-- **Navbar** → `<a href="#waitlist">Get Early Access</a>` (scrolls to hero form)
-- **Hero** → `<WaitlistForm size="lg" />` with `id="waitlist"` anchor
-- **Pricing cards** → `href="#waitlist"` (both tiers)
-- **Final CTA section** → `<WaitlistForm size="lg" />`
-- **Footer** → Chrome Store link removed
+- **Navbar** → "Add to Chrome" button → `CHROME_STORE_URL` (opens in new tab)
+- **Hero** → `<motion.a href={CHROME_STORE_URL}>Add to Chrome — Free</motion.a>`
+- **Pricing cards** → CTA button in each card links to `CHROME_STORE_URL`
+- **Final CTA section** → same download button
 
-### When the extension is approved on CWS:
-1. Uncomment `CHROME_STORE_URL` in `App.tsx:6` and fill in the real extension ID.
-2. Replace `<WaitlistForm />` instances with `<motion.a href={CHROME_STORE_URL}>Add to Chrome — Free</motion.a>`.
-3. Update `PricingCard` hrefs from `'#waitlist'` to the real CWS URL.
-4. Update the navbar button back to "Add to Chrome".
-
-### Formspree setup (waitlist emails):
-- Go to formspree.io → create a free form → copy the endpoint ID.
-- Replace `REPLACE_ME` in `WaitlistForm.tsx:4`.
+`WaitlistForm.tsx` is no longer used but kept in the repo.
 
 ---
 

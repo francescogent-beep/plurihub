@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import {
   Layout, Zap, Archive, FolderOpen, Shield,
   Globe, Users, CheckCircle2
@@ -12,11 +12,9 @@ import FeatureCard from './components/FeatureCard'
 import ComparisonTable from './components/ComparisonTable'
 import PricingCard from './components/PricingCard'
 import FAQ from './components/FAQ'
-import WaitlistForm from './components/WaitlistForm'
 import CookieBanner from './components/CookieBanner'
 
-// TODO: set this once your extension is approved on the Chrome Web Store
-// export const CHROME_STORE_URL = 'https://chrome.google.com/webstore/detail/plurihub/<your-extension-id>'
+export const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/nlgembofcnkejdilolmphpikokljokdk'
 
 function ChromeIcon({ size = 16, className = '' }: { size?: number; className?: string }) {
   return (
@@ -104,6 +102,8 @@ const PRICING = [
       'Context preservation',
     ],
     highlighted: false,
+    href: CHROME_STORE_URL,
+    cta: 'Add to Chrome — Free',
   },
   {
     plan: 'Pro',
@@ -120,6 +120,8 @@ const PRICING = [
     ],
     highlighted: true,
     badge: 'Most Popular',
+    href: CHROME_STORE_URL,
+    cta: 'Get Pro',
   },
 ]
 
@@ -140,6 +142,37 @@ const PROBLEM_CARDS = [
     body: 'Cmd+Tab, hunt for tab, click, wait to load. Repeat 50 times a day.',
   },
 ]
+
+const ORBIT_ICONS = [
+  { color: '#10A37F', label: 'ChatGPT',    x: '8%',   y: '18%',  size: 28, delay: 0    },
+  { color: '#D97706', label: 'Claude',     x: '88%',  y: '12%',  size: 24, delay: 1.2  },
+  { color: '#4A8CF7', label: 'Gemini',     x: '5%',   y: '70%',  size: 22, delay: 0.7  },
+  { color: '#1a1a1a', label: 'Perplexity', x: '92%',  y: '65%',  size: 20, delay: 2.1  },
+  { color: '#8B5CF6', label: 'NotebookLM', x: '78%',  y: '82%',  size: 18, delay: 1.6  },
+  { color: '#111',    label: 'Grok',       x: '18%',  y: '88%',  size: 18, delay: 0.4  },
+  { color: '#2563EB', label: 'DeepSeek',   x: '50%',  y: '92%',  size: 16, delay: 2.8  },
+  { color: '#FF7000', label: 'Mistral',    x: '72%',  y: '8%',   size: 20, delay: 1.9  },
+  { color: '#0081FB', label: 'Meta AI',    x: '30%',  y: '6%',   size: 16, delay: 3.2  },
+  { color: '#7C3AED', label: 'Poe',        x: '95%',  y: '38%',  size: 16, delay: 0.9  },
+  { color: '#0EA5E9', label: 'Copilot',    x: '3%',   y: '42%',  size: 18, delay: 2.4  },
+]
+
+function FloatingOrbit() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
+      {ORBIT_ICONS.map(({ color, label, x, y, size, delay }) => (
+        <motion.div
+          key={label}
+          className="absolute rounded-full opacity-30"
+          style={{ left: x, top: y, width: size, height: size, background: color,
+            boxShadow: `0 0 ${size}px ${color}66` }}
+          animate={{ y: [0, -14, 0], x: [0, 6, 0], opacity: [0.25, 0.45, 0.25] }}
+          transition={{ duration: 5 + delay, repeat: Infinity, ease: 'easeInOut', delay }}
+        />
+      ))}
+    </div>
+  )
+}
 
 function KbdShortcut() {
   const [pressed, setPressed] = useState(false)
@@ -214,82 +247,204 @@ function Navbar() {
         </div>
 
         <motion.a
-          href="#waitlist"
+          href={CHROME_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           className="flex items-center gap-2 bg-[#0EA5E9] hover:bg-[#0284C7] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
         >
           <ChromeIcon size={14} />
-          Get Early Access
+          Add to Chrome
         </motion.a>
       </div>
     </motion.nav>
   )
 }
 
+const SHIMMER_DOTS = [
+  { x: '12%',  y: '8%'  }, { x: '35%',  y: '3%'  }, { x: '62%',  y: '11%' },
+  { x: '85%',  y: '5%'  }, { x: '5%',   y: '28%' }, { x: '92%',  y: '22%' },
+  { x: '22%',  y: '45%' }, { x: '48%',  y: '38%' }, { x: '75%',  y: '42%' },
+  { x: '15%',  y: '62%' }, { x: '58%',  y: '58%' }, { x: '88%',  y: '55%' },
+  { x: '30%',  y: '75%' }, { x: '70%',  y: '72%' }, { x: '8%',   y: '85%' },
+  { x: '45%',  y: '88%' }, { x: '82%',  y: '80%' }, { x: '95%',  y: '92%' },
+]
+
+function GridShimmer() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0" aria-hidden>
+      {SHIMMER_DOTS.map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full bg-[#0EA5E9]"
+          style={{ left: pos.x, top: pos.y }}
+          animate={{ opacity: [0, 0.7, 0], scale: [1, 1.8, 1] }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            repeatDelay: 3 + (i * 1.3) % 7,
+            ease: 'easeInOut',
+            delay: (i * 0.7) % 6,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+function ProblemCard({ icon, title, body, index }: { icon: string; title: string; body: string; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const mouseX = useMotionValue(0.5)
+  const mouseY = useMotionValue(0.5)
+  const rotateX = useSpring(useTransform(mouseY, [0, 1], [5, -5]), { stiffness: 300, damping: 30 })
+  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-5, 5]), { stiffness: 300, damping: 30 })
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = ref.current?.getBoundingClientRect()
+    if (!rect) return
+    const x = (e.clientX - rect.left) / rect.width
+    const y = (e.clientY - rect.top) / rect.height
+    mouseX.set(x)
+    mouseY.set(y)
+    ref.current?.style.setProperty('--mx', `${x * 100}%`)
+    ref.current?.style.setProperty('--my', `${y * 100}%`)
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0.5)
+    mouseY.set(0.5)
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ delay: index * 0.1, duration: 0.45 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800 }}
+      className="relative bg-[#111] border border-[#1e1e1e] rounded-2xl p-7 hover:border-[#ef4444]/30 transition-colors duration-300 group cursor-default"
+    >
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{ background: 'radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(239,68,68,0.07) 0%, transparent 60%)' }}
+      />
+      <div className="text-4xl mb-5">{icon}</div>
+      <h3 className="font-semibold text-white text-base mb-2.5 group-hover:text-[#ef4444] transition-colors">{title}</h3>
+      <p className="text-[#71717a] text-sm leading-relaxed">{body}</p>
+    </motion.div>
+  )
+}
+
+function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const mouseX = useMotionValue(0.5)
+  const mouseY = useMotionValue(0.5)
+
+  const orbX = useSpring(useTransform(mouseX, [0, 1], [-60, 60]), { stiffness: 60, damping: 20 })
+  const orbY = useSpring(useTransform(mouseY, [0, 1], [-40, 40]), { stiffness: 60, damping: 20 })
+  const orb2X = useSpring(useTransform(mouseX, [0, 1], [40, -40]), { stiffness: 40, damping: 20 })
+  const orb2Y = useSpring(useTransform(mouseY, [0, 1], [30, -30]), { stiffness: 40, damping: 20 })
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = sectionRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseX.set((e.clientX - rect.left) / rect.width)
+    mouseY.set((e.clientY - rect.top) / rect.height)
+  }
+
+  return (
+    <section ref={sectionRef} onMouseMove={handleMouseMove}
+      className="relative pt-40 pb-20 px-6 text-center overflow-hidden">
+
+      {/* Floating provider orbits */}
+      <FloatingOrbit />
+
+      {/* Main blue orb — follows cursor */}
+      <motion.div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none orb-breathe"
+        style={{ x: orbX, y: orbY,
+          background: 'radial-gradient(ellipse at center, rgba(14,165,233,0.18) 0%, transparent 65%)' }}
+      />
+
+      {/* Secondary purple orb */}
+      <motion.div
+        className="absolute top-2/3 left-1/3 w-[600px] h-[400px] pointer-events-none orb-drift"
+        style={{ x: orb2X, y: orb2Y,
+          background: 'radial-gradient(ellipse at center, rgba(124,58,237,0.10) 0%, transparent 65%)' }}
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-3xl mx-auto relative z-10"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+          className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/8 text-[#0EA5E9] text-xs font-medium"
+        >
+          <ChromeIcon size={12} />
+          Chrome Extension · Now Live
+          <span className="w-1.5 h-1.5 rounded-full bg-[#28C840] animate-pulse inline-block" />
+        </motion.div>
+
+        <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-bold leading-[1.05] tracking-tight mb-8">
+          <span className="text-white">All your AI chats.</span>
+          <br />
+          <span className="text-gradient-shimmer">One sidebar.</span>
+          <br />
+          <span className="text-white">Zero tab chaos.</span>
+        </h1>
+
+        <p className="text-[#a1a1aa] text-xl leading-relaxed mb-12 max-w-lg mx-auto">
+          Save, organize, and revisit AI conversations from ChatGPT, Claude, Gemini, and{' '}
+          <span className="text-white">8 more tools</span>
+          {' '}— without juggling{' '}
+          <span className="text-white line-through decoration-[#ef4444]/60">
+            47 different tabs
+          </span>
+          .
+        </p>
+
+        <div className="flex justify-center mb-10">
+          <motion.a
+            href={CHROME_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-3 bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] hover:from-[#0284C7] hover:to-[#0EA5E9] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg shadow-[#0EA5E9]/20 transition-all"
+          >
+            <ChromeIcon size={18} />
+            Add to Chrome — Free
+          </motion.a>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#52525b]">
+          <span>Free forever. No credit card.</span>
+          <span className="w-px h-3 bg-[#2a2a2a]" />
+          <span>11 AI providers</span>
+          <span className="w-px h-3 bg-[#2a2a2a]" />
+          <span>Chrome desktop</span>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] dot-grid text-white overflow-x-hidden">
+      <GridShimmer />
       <Navbar />
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-40 pb-20 px-6 text-center">
-        <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(14,165,233,0.15) 0%, transparent 65%)',
-          }}
-        />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-[#0EA5E9]/30 bg-[#0EA5E9]/8 text-[#0EA5E9] text-xs font-medium"
-          >
-            <ChromeIcon size={12} />
-            Chrome Extension · Launching Soon
-            <span className="w-1.5 h-1.5 rounded-full bg-[#28C840] animate-pulse inline-block" />
-          </motion.div>
-
-          <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-bold leading-[1.05] tracking-tight mb-8">
-            <span className="text-white">All your AI chats.</span>
-            <br />
-            <span className="text-gradient">One sidebar.</span>
-            <br />
-            <span className="text-white">Zero tab chaos.</span>
-          </h1>
-
-          <p className="text-[#a1a1aa] text-xl leading-relaxed mb-12 max-w-lg mx-auto">
-            Save, organize, and revisit AI conversations from ChatGPT, Claude, Gemini, and{' '}
-            <span className="text-white">8 more tools</span>
-            {' '}— without juggling{' '}
-            <span className="text-white line-through decoration-[#ef4444]/60">
-              47 different tabs
-            </span>
-            .
-          </p>
-
-          <div id="waitlist" className="flex justify-center mb-10">
-            <WaitlistForm size="lg" />
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#52525b]">
-            <span>Free forever. No credit card.</span>
-            <span className="w-px h-3 bg-[#2a2a2a]" />
-            <span>11 AI providers</span>
-            <span className="w-px h-3 bg-[#2a2a2a]" />
-            <span>Chrome desktop</span>
-          </div>
-        </motion.div>
-      </section>
+      <HeroSection />
 
       {/* ─── PROVIDER TAPE ─── */}
       <ProviderTape />
@@ -325,21 +480,7 @@ export default function App() {
 
           <div className="grid md:grid-cols-3 gap-5">
             {PROBLEM_CARDS.map((card, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ delay: i * 0.1, duration: 0.45 }}
-                whileHover={{ y: -3 }}
-                className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-7 hover:border-[#ef4444]/25 transition-all group cursor-default"
-              >
-                <div className="text-4xl mb-5">{card.icon}</div>
-                <h3 className="font-semibold text-white text-base mb-2.5 group-hover:text-[#ef4444] transition-colors">
-                  {card.title}
-                </h3>
-                <p className="text-[#71717a] text-sm leading-relaxed">{card.body}</p>
-              </motion.div>
+              <ProblemCard key={i} {...card} index={i} />
             ))}
           </div>
 
@@ -547,11 +688,21 @@ export default function App() {
               <span className="text-gradient">Start building.</span>
             </h2>
             <p className="text-[#a1a1aa] text-xl mb-12 max-w-lg mx-auto leading-relaxed">
-              Be first in line when PluriHub launches on the Chrome Web Store.
+              Live on the Chrome Web Store. Free to install. No credit card.
             </p>
 
             <div className="flex justify-center">
-              <WaitlistForm size="lg" />
+              <motion.a
+                href={CHROME_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-3 bg-gradient-to-r from-[#0EA5E9] to-[#06B6D4] hover:from-[#0284C7] hover:to-[#0EA5E9] text-white font-bold px-8 py-4 rounded-xl text-base shadow-lg shadow-[#0EA5E9]/20 transition-all"
+              >
+                <ChromeIcon size={18} />
+                Add to Chrome — Free
+              </motion.a>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs text-[#52525b]">
