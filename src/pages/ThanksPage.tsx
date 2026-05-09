@@ -45,7 +45,14 @@ function Confetti() {
 }
 
 export default function ThanksPage() {
-  useEffect(() => { document.title = 'Welcome to Premium — PluriHub' }, [])
+  useEffect(() => {
+    document.title = 'Welcome to Premium — PluriHub'
+    // Prevent search engines from indexing the post-payment confirmation page
+    const robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null
+    const prev = robotsMeta?.content ?? ''
+    if (robotsMeta) robotsMeta.content = 'noindex, nofollow'
+    return () => { if (robotsMeta) robotsMeta.content = prev }
+  }, [])
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6 py-12 text-center font-sans">

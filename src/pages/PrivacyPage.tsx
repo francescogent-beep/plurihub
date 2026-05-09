@@ -4,8 +4,29 @@ import { ArrowLeft, Globe } from 'lucide-react'
 import PluriHubMark from '../components/PluriHubMark'
 import { PrivacyContent } from '../components/LegalContent'
 
+function setCanonical(href: string) {
+  let el = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+  if (el) {
+    el.href = href
+  } else {
+    el = document.createElement('link')
+    el.rel = 'canonical'
+    el.href = href
+    document.head.appendChild(el)
+  }
+}
+
 export default function PrivacyPage() {
-  useEffect(() => { document.title = 'Privacy Policy — PluriHub' }, [])
+  useEffect(() => {
+    const prevTitle = document.title
+    const prevCanonical = document.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? 'https://plurihub.com/'
+    document.title = 'Privacy Policy — PluriHub'
+    setCanonical('https://plurihub.com/privacy')
+    return () => {
+      document.title = prevTitle
+      setCanonical(prevCanonical)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">

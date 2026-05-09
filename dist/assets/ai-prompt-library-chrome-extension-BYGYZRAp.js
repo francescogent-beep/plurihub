@@ -1,0 +1,33 @@
+import{t as e}from"./index-CXe9eeuo.js";var t=e();function n(e){let n={a:`a`,h1:`h1`,h2:`h2`,li:`li`,ol:`ol`,p:`p`,strong:`strong`,...e.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(n.h1,{children:`The Best AI Prompt Library for Chrome (That Works Across Every AI Tool)`}),`
+`,(0,t.jsx)(n.p,{children:`If you've been using AI tools for a while, you've noticed that some prompts just work. A specific way of asking Claude to review your writing. A particular briefing format that makes ChatGPT stay in character. A research prompt that reliably produces structured, useful output from Perplexity.`}),`
+`,(0,t.jsx)(n.p,{children:`Most people keep these somewhere — a notes app, a text file, a sticky note. Then they have to find it, copy it, switch to the AI tool, paste it. It's a tiny friction, but it's enough that people often just retype a slightly worse version of the prompt from memory, wondering why the results aren't as good.`}),`
+`,(0,t.jsx)(n.p,{children:`There is a better way.`}),`
+`,(0,t.jsx)(n.h2,{children:`What a prompt library in your browser sidebar does`}),`
+`,(0,t.jsx)(n.p,{children:`A prompt library that lives in your browser sidebar — available on any tab, regardless of which AI tool you're using — removes the friction entirely. Your best prompts are one click away. You paste them directly into ChatGPT, Claude, Gemini, or any other tool without leaving the conversation.`}),`
+`,(0,t.jsx)(n.p,{children:`This changes how you work with AI in a few important ways:`}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`Your best results become repeatable.`}),` Instead of hoping you remember how to phrase something that worked before, you have the exact version that worked. You use it every time. Your AI interactions become more consistent and more useful.`]}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`You stop treating every conversation as if it starts from zero.`}),` Context matters enormously in AI conversations. If you always open Claude with the same 100-word brief about who you are, what you're working on, and how you like to receive feedback, Claude's responses are dramatically better than when you start cold. A prompt library makes this standard.`]}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`You can build a prompt library as a team.`}),` If you work with others, a shared set of prompts means consistent outputs across the team. Everyone uses the same briefing template. Everyone's AI outputs start from the same quality baseline.`]}),`
+`,(0,t.jsx)(n.h2,{children:`PluriHub's Prompt Library`}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`PluriHub`}),` is a free Chrome extension that includes a prompt library built into its sidebar. It works across every major AI platform — ChatGPT, Claude, Gemini, Grok, Perplexity, DeepSeek, Mistral, Copilot, Meta AI, NotebookLM, Poe, Pi, OpenRouter, and more.`]}),`
+`,(0,t.jsx)(n.p,{children:`Here is how it works in practice:`}),`
+`,(0,t.jsxs)(n.ol,{children:[`
+`,(0,t.jsx)(n.li,{children:`You have a prompt that produces great results — a research framework, a feedback request, a writing brief.`}),`
+`,(0,t.jsx)(n.li,{children:`You save it in PluriHub's prompt library with a clear name.`}),`
+`,(0,t.jsx)(n.li,{children:`Next time you need it, you open the PluriHub sidebar (works on any Chrome tab), find the prompt, and paste it into whatever AI tool you're using.`}),`
+`]}),`
+`,(0,t.jsx)(n.p,{children:`No switching apps. No hunting through notes. No retyping.`}),`
+`,(0,t.jsx)(n.p,{children:`The prompt library sits alongside PluriHub's other features — saved conversations organised into project folders (Spaces) and Split View for comparing two AI tools side by side. It is a complete sidebar for your AI workflow, not just a prompt tool.`}),`
+`,(0,t.jsx)(n.h2,{children:`Prompts worth saving`}),`
+`,(0,t.jsx)(n.p,{children:`If you're not sure where to start, these are the categories of prompts most worth keeping in a library:`}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`Context blocks.`}),` A standard paragraph about who you are, what you're working on, and what kind of output you want. Paste this at the start of any new conversation to avoid rebuilding context from scratch every time.`]}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`Feedback prompts.`}),` A specific way of asking AI to review your work that gives you genuinely useful feedback rather than generic praise. "Review this as a sceptical editor who is trying to improve it, not validate it" produces very different output from "give me feedback."`]}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`Formatting templates.`}),` If you often need output in a specific format — a structured report, a numbered list with supporting evidence, a table — save the exact prompt that produces it. Don't rewrite it each time.`]}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`Research frameworks.`}),` A prompt that asks an AI to research a topic in a structured way, covering specific angles, with a defined output format. Once you've refined one of these, it is worth keeping.`]}),`
+`,(0,t.jsxs)(n.p,{children:[(0,t.jsx)(n.strong,{children:`System prompts for ongoing projects.`}),` If you have a project you return to regularly, the context block for that project — what it is, who it's for, what decisions have been made — is worth saving and pasting into every new conversation on that project.`]}),`
+`,(0,t.jsx)(n.h2,{children:`Why browser-native matters`}),`
+`,(0,t.jsx)(n.p,{children:`The advantage of a prompt library that lives in your browser sidebar — rather than in a separate app — is that it is always available. You never have to switch context. The prompts are accessible from whatever page you are on, with whichever AI tool you are using.`}),`
+`,(0,t.jsx)(n.p,{children:`This is the difference between a tool you actually use and a tool you set up once and abandon. Friction, even small friction, determines whether you maintain a habit.`}),`
+`,(0,t.jsx)(n.h2,{children:`Get started`}),`
+`,(0,t.jsx)(n.p,{children:`PluriHub is free and takes about 15 seconds to install. After installation, it lives in Chrome's side panel — the icon on the right side of your browser. Create your first prompt within the first session: paste whatever context block you find yourself retyping most often, save it, and use it immediately.`}),`
+`,(0,t.jsx)(n.p,{children:(0,t.jsx)(n.a,{href:`https://plurihub.com`,children:`Install PluriHub free →`})})]})}function r(e={}){let{wrapper:r}=e.components||{};return r?(0,t.jsx)(r,{...e,children:(0,t.jsx)(n,{...e})}):n(e)}export{r as default};

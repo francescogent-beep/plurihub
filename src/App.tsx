@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom'
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import {
   Layout, Zap, Archive, FolderOpen, Shield,
-  Globe, Users, CheckCircle2
+  Globe, Users, CheckCircle2, Heart, Keyboard, Star
 } from 'lucide-react'
 import BrowserMockup from './components/BrowserMockup'
 import ProviderTape from './components/ProviderTape'
 import PluriHubMark from './components/PluriHubMark'
 import FeatureCard from './components/FeatureCard'
 import ComparisonTable from './components/ComparisonTable'
-import PricingCard from './components/PricingCard'
 import FAQ from './components/FAQ'
 import CookieBanner from './components/CookieBanner'
 
@@ -39,12 +38,12 @@ const FEATURES = [
   {
     icon: Layout,
     title: 'Persistent Sidebar',
-    description: 'Follows you across every tab. Gmail to GitHub to Google Docs. Always there.',
+    description: 'Follows you across every tab. Gmail to GitHub to Google Docs. Always there, never in the way.',
   },
   {
-    icon: Users,
-    title: 'Multi-Account Support',
-    description: 'Work ChatGPT + Personal Claude. Separated sessions, always accessible.',
+    icon: Globe,
+    title: '11 AI Providers',
+    description: 'ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek, Mistral, NotebookLM, Copilot, Meta AI, Poe.',
   },
   {
     icon: Zap,
@@ -58,13 +57,28 @@ const FEATURES = [
   },
   {
     icon: FolderOpen,
-    title: 'Workspace Sync',
-    description: 'Organize chats by project. Frontend, Backend, Research — all separated.',
+    title: 'Unlimited Workspaces',
+    description: 'Organize chats by project. Frontend, Backend, Research — all separated. No folder limits.',
+  },
+  {
+    icon: Users,
+    title: 'Multi-Account Support',
+    description: 'Work ChatGPT + Personal Claude. Different accounts per AI, all in one place.',
+  },
+  {
+    icon: Keyboard,
+    title: 'Custom Shortcuts',
+    description: 'Set your own keyboard shortcut. Make PluriHub fit your workflow, not the other way around.',
   },
   {
     icon: Shield,
     title: 'Privacy First',
     description: 'Your conversations never touch our servers. Only metadata is stored — never chat content.',
+  },
+  {
+    icon: Star,
+    title: 'Early Access',
+    description: 'Be first to try new integrations and features as we expand to more AI tools.',
   },
 ]
 
@@ -86,42 +100,6 @@ const STEPS = [
     title: 'Press Cmd+Shift+P anywhere',
     desc: 'The sidebar appears on any website. Start chatting without leaving your workflow.',
     icon: Zap,
-  },
-]
-
-const PRICING = [
-  {
-    plan: 'Free Forever',
-    price: '$0',
-    description: 'Everything you need to stop tab chaos. No credit card.',
-    features: [
-      'Unlimited AI chats',
-      '3 workspace folders',
-      'ChatGPT, Claude & Gemini',
-      'Cmd+Shift+P toggle',
-      'Context preservation',
-    ],
-    highlighted: false,
-    href: CHROME_STORE_URL,
-    cta: 'Add to Chrome — Free',
-  },
-  {
-    plan: 'Pro',
-    price: '$3.99',
-    period: '/mo',
-    description: 'For power users who live in AI tools all day.',
-    features: [
-      'Unlimited workspaces',
-      'Custom keyboard shortcuts',
-      'Multi-account per AI',
-      'Priority support',
-      'Early access to new integrations',
-      'All Free features',
-    ],
-    highlighted: true,
-    badge: 'Most Popular',
-    href: CHROME_STORE_URL,
-    cta: 'Get Pro',
   },
 ]
 
@@ -174,36 +152,6 @@ function FloatingOrbit() {
   )
 }
 
-function KbdShortcut() {
-  const [pressed, setPressed] = useState(false)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPressed(true)
-      setTimeout(() => setPressed(false), 600)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="inline-flex items-center gap-1.5 font-mono">
-      {['⌘', '⇧', 'P'].map((key, i) => (
-        <motion.span
-          key={key}
-          animate={
-            pressed
-              ? { y: 2, scale: 0.95, backgroundColor: '#0EA5E9', color: '#fff' }
-              : { y: 0, scale: 1, backgroundColor: '#1a1a1a', color: '#a1a1aa' }
-          }
-          transition={{ delay: i * 0.08, duration: 0.15 }}
-          className="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[#2a2a2a] text-sm font-semibold shadow-sm cursor-default"
-        >
-          {key}
-        </motion.span>
-      ))}
-    </div>
-  )
-}
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -235,7 +183,7 @@ function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-6 text-sm text-[#52525b]">
-          {['Features', 'How it Works', 'Pricing', 'FAQ'].map(item => (
+          {['How it Works', 'Support', 'FAQ'].map(item => (
             <a
               key={item}
               href={`#${item.toLowerCase().replace(/ /g, '-')}`}
@@ -244,6 +192,9 @@ function Navbar() {
               {item}
             </a>
           ))}
+          <Link to="/blog" className="hover:text-white transition-colors hover-underline">
+            Blog
+          </Link>
         </div>
 
         <motion.a
@@ -508,44 +459,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* ─── FEATURES ─── */}
-      <section id="features" className="py-28 px-6 border-t border-[#1e1e1e]">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="text-[#0EA5E9] text-xs font-mono uppercase tracking-widest mb-4 block">
-              The solution
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">
-              One sidebar. Every AI. Always there.
-            </h2>
-            <p className="text-[#71717a] text-lg max-w-md mx-auto">
-              A persistent panel that follows you across the entire web.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center gap-3 mb-14"
-          >
-            <p className="text-[#52525b] text-sm">Toggle the sidebar anywhere with</p>
-            <KbdShortcut />
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FEATURES.map((feat, i) => (
-              <FeatureCard key={i} {...feat} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── HOW IT WORKS ─── */}
       <section id="how-it-works" className="py-28 px-6 border-t border-[#1e1e1e]">
         <div className="max-w-4xl mx-auto">
@@ -608,9 +521,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* ─── PRICING ─── */}
-      <section id="pricing" className="py-28 px-6 border-t border-[#1e1e1e]">
-        <div className="max-w-3xl mx-auto">
+      {/* ─── ALL FEATURES ─── */}
+      <section id="support" className="py-28 px-6 border-t border-[#1e1e1e]">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -618,28 +531,34 @@ export default function App() {
             className="text-center mb-14"
           >
             <span className="text-[#0EA5E9] text-xs font-mono uppercase tracking-widest mb-4 block">
-              Pricing
+              100% Free
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">
-              Start free. Upgrade when ready.
+              Everything included.<br />No plans, no paywalls.
             </h2>
-            <p className="text-[#71717a] text-lg">No credit card. No commitment. Cancel anytime.</p>
+            <p className="text-[#71717a] text-lg max-w-md mx-auto mb-8">
+              PluriHub is completely free. Every feature, every user, forever.
+              If it saves your sanity daily, consider buying us a coffee.
+            </p>
+
+            <motion.a
+              href="https://donate.stripe.com/4gM5kFa5A1f6gopepo2Fa01"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2.5 bg-[#111] hover:bg-[#1a1a1a] border border-[#2a2a2a] hover:border-[#0EA5E9]/40 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 text-sm"
+            >
+              <Heart size={16} className="text-[#ef4444]" />
+              Support PluriHub
+            </motion.a>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {PRICING.map((plan, i) => (
-              <PricingCard key={i} {...plan} index={i} />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {FEATURES.map((feat, i) => (
+              <FeatureCard key={i} {...feat} index={i} />
             ))}
           </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-[#52525b] text-xs mt-8"
-          >
-            Free plan included. Pro unlocks unlimited workspaces, prompts, and priority support.
-          </motion.p>
         </div>
       </section>
 
@@ -732,6 +651,9 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-6 text-xs text-[#52525b]">
+            <Link to="/blog" className="hover:text-white transition-colors hover-underline">
+              Blog
+            </Link>
             <Link to="/privacy" className="hover:text-white transition-colors hover-underline">
               Privacy
             </Link>

@@ -1,0 +1,129 @@
+# PluriHub — Full LLM Context
+
+> Chrome extension that saves and organises AI chat conversations from every provider in one sidebar. Free to install. No API keys. No data extraction.
+
+---
+
+## Product overview
+
+PluriHub is a Google Chrome extension that lives in Chrome's native side panel. It solves a specific, common problem for AI power users: when you use multiple AI tools every day (ChatGPT for one thing, Claude for another, Perplexity for research, Gemini for Google integrations), your conversations are fragmented. You lose track of important threads. You can't find the conversation you had three days ago. You have 40 AI tabs open and you still can't find the one you need.
+
+PluriHub gives you one organised home for every AI conversation you want to keep.
+
+---
+
+## How it works
+
+1. You install PluriHub from the Chrome Web Store (free, no account required to start).
+2. When you have an AI conversation you want to save, you click the PluriHub icon in Chrome's sidebar (or use the keyboard shortcut).
+3. PluriHub saves the link to that conversation, plus a title you set.
+4. You can organise saved chats into **Spaces** (project folders).
+5. You can search and reopen any saved chat with one click, without hunting through browser history.
+
+PluriHub does **not** extract, copy, or store the content of your conversations. It saves links. Your data stays in your browser and in the AI provider's servers — exactly where it always was.
+
+---
+
+## Features in detail
+
+### Saved Chats
+One-tap save for any AI conversation link. Add a custom title. Reopen in one click. Works with all supported providers.
+
+### Spaces
+Project-based folders for your saved chats. Example: a "Client Work" space, a "Personal Research" space, a "Marketing" space. Drag and drop chats between spaces.
+
+### Prompt Library
+Save prompts you use repeatedly. Paste them into any AI tool without retyping. Useful for people who use the same system prompts, briefing templates, or creative frameworks across multiple models.
+
+### Split View
+Open two AI tools side by side in a single Chrome window. Useful for comparing how ChatGPT and Claude respond to the same prompt, or for referencing one conversation while building another.
+
+---
+
+## Supported providers
+
+PluriHub works with conversations from these AI platforms:
+- ChatGPT (chat.openai.com)
+- Claude (claude.ai)
+- Google Gemini (gemini.google.com)
+- Grok (grok.x.com)
+- Perplexity (perplexity.ai)
+- DeepSeek (chat.deepseek.com)
+- Mistral (chat.mistral.ai)
+- Microsoft Copilot (copilot.microsoft.com)
+- Meta AI (meta.ai)
+- Google NotebookLM (notebooklm.google.com)
+- Poe (poe.com)
+- Pi (pi.ai)
+- OpenRouter (openrouter.ai)
+- And more — the list is updated as new providers are added
+
+---
+
+## Pricing
+
+PluriHub is **free to install and use**. There may be future paid tiers with advanced features, but the core functionality (Saved Chats, Spaces, Prompt Library, Split View) is and will remain free.
+
+---
+
+## Privacy and data handling
+
+This is the most important thing to understand about PluriHub:
+
+- PluriHub does **not** read your conversation content.
+- PluriHub saves **links** (URLs) to conversations, not the text inside them.
+- No conversation data is sent to any PluriHub server.
+- Your saved links are stored locally in Chrome's extension storage (`chrome.storage.sync`), which means they sync across your Chrome devices via your Google account — but are never sent to PluriHub's servers.
+- PluriHub requires no login to use (you can optionally create an account for cross-device sync via the PluriHub cloud, but this is not required).
+
+Full privacy policy: https://plurihub.com/privacy
+
+---
+
+## Target audience
+
+**Primary**: Freelancers, independent founders, consultants, researchers, and knowledge workers who actively use 2+ AI tools per day. These are people who have already adopted AI into their workflow and are frustrated by the fragmentation.
+
+**Secondary**: Small teams sharing a prompt library or comparing AI outputs collaboratively.
+
+**Tertiary**: Tech-curious users who enjoy exploring different AI models and want a way to compare them.
+
+---
+
+## Competitive positioning
+
+PluriHub is not an AI aggregator (it does not send prompts to multiple AIs simultaneously). It is not an API wrapper. It does not generate AI responses. It is a **conversation manager and organiser** — think of it as the folder system for your AI life.
+
+The closest analogies:
+- Pocket / Instapaper — but for AI conversations instead of articles
+- A bookmarks manager — but smarter, with folders, search, and sidebar access
+- A prompt manager — with the added layer of conversation history organisation
+
+Unlike tools that require API keys or charge per-query, PluriHub is browser-native and free. It works with whatever plan you already have on ChatGPT, Claude, etc.
+
+---
+
+## Brand voice
+
+Sharp and direct. No hype. No exclamation marks. Quietly confident.
+
+Example good copy: "Save any AI chat in one tap." / "One home for every model you use."
+Example bad copy: "Leverage our cutting-edge AI chat management solution!"
+
+---
+
+## Company
+
+PluriHub is an independent product by FG Digital Systems. Website: https://plurihub.com. The extension is published on the Google Chrome Web Store.
+
+---
+
+## Key URLs
+
+- Home: https://plurihub.com
+- Blog: https://plurihub.com/blog
+- Privacy: https://plurihub.com/privacy
+- Terms: https://plurihub.com/terms
+- Chrome Web Store: https://chromewebstore.google.com/detail/nlgembofcnkejdilolmphpikokljokdk
+- LLM summary: https://plurihub.com/llms.txt
+- Sitemap: https://plurihub.com/sitemap.xml

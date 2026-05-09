@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PluriHub Blog</title>
+    <link>https://plurihub.com/blog</link>
+    <description>Guides and tips for AI power users. How to organise your ChatGPT, Claude, and Gemini conversations and get more from every model.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://plurihub.com/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>The Best Chrome Extension for ChatGPT in 2026</title>
+      <link>https://plurihub.com/blog/best-chrome-extension-chatgpt</link>
+      <guid isPermaLink="true">https://plurihub.com/blog/best-chrome-extension-chatgpt</guid>
+      <pubDate>Fri, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>If you use ChatGPT every day, you need a way to manage your conversations. Here&apos;s the Chrome extension that finally solves it — and it works with Claude, Gemini, and Perplexity too.</description>
+    </item>
+
+    <item>
+      <title>How to Organise Your AI Conversations (Before You Lose Another Good One)</title>
+      <link>https://plurihub.com/blog/how-to-organize-ai-conversations</link>
+      <guid isPermaLink="true">https://plurihub.com/blog/how-to-organize-ai-conversations</guid>
+      <pubDate>Fri, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>Most people using AI tools daily are losing their best conversations to disorganised history. Here&apos;s a system that actually works — and the Chrome extension that makes it effortless.</description>
+    </item>
+
+    <item>
+      <title>Using ChatGPT, Claude, and Gemini Together Without Losing Your Mind</title>
+      <link>https://plurihub.com/blog/chatgpt-claude-gemini-together</link>
+      <guid isPermaLink="true">https://plurihub.com/blog/chatgpt-claude-gemini-together</guid>
+      <pubDate>Fri, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>Most serious AI users work with multiple models. Here&apos;s how to build a workflow that uses ChatGPT, Claude, and Gemini for what each does best — without tab chaos or lost conversations.</description>
+    </item>
+
+    <item>
+      <title>Why You Keep Losing Your Best AI Conversations (And How to Fix It)</title>
+      <link>https://plurihub.com/blog/stop-losing-ai-conversations</link>
+      <guid isPermaLink="true">https://plurihub.com/blog/stop-losing-ai-conversations</guid>
+      <pubDate>Fri, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>You&apos;ve had AI conversations that changed how you think about a problem. Then they&apos;re gone. Here&apos;s why this happens and the simple system that stops it.</description>
+    </item>
+
+    <item>
+      <title>The Best AI Prompt Library for Chrome (That Works Across Every AI Tool)</title>
+      <link>https://plurihub.com/blog/ai-prompt-library-chrome-extension</link>
+      <guid isPermaLink="true">https://plurihub.com/blog/ai-prompt-library-chrome-extension</guid>
+      <pubDate>Fri, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>Stop retyping your best prompts into every new AI conversation. Here&apos;s how a prompt library built into your browser sidebar changes your entire AI workflow.</description>
+    </item>
+
+  </channel>
+</rss>

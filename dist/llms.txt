@@ -1,0 +1,46 @@
+# PluriHub
+
+> Chrome extension that saves and organises your AI chat conversations from every provider — ChatGPT, Claude, Gemini, Grok, Perplexity, and 10+ more — in a single browser sidebar.
+
+PluriHub is a free Chrome extension (available on the Chrome Web Store) that solves the problem of scattered AI conversations. When you use multiple AI tools daily, your conversations are split across browser tabs, different windows, and completely separate platforms. PluriHub gives you one organised home for all of them.
+
+## What PluriHub does
+
+- **Saved Chats**: Save any AI conversation in one tap. Works across ChatGPT, Claude, Gemini, Grok, Perplexity, DeepSeek, Mistral, Copilot, Meta AI, NotebookLM, Poe, Pi, OpenRouter, and more.
+- **Spaces**: Organise saved chats into project folders. Keep your work research separate from personal conversations.
+- **Prompt Library**: Save your best prompts and reuse them across any AI tool without retyping.
+- **Split View**: Compare responses from two AI tools side by side in the same window.
+
+## Who it's for
+
+Freelancers, founders, researchers, developers, and knowledge workers who use more than one AI tool every day and are tired of losing important conversations or switching between tabs constantly.
+
+## Key facts
+
+- **Price**: Free to install
+- **Platform**: Google Chrome (side panel)
+- **No API keys required**: PluriHub saves links to your conversations — it does not extract, store, or process your conversation data on any server.
+- **Privacy**: Your chats stay in your browser. PluriHub saves links, not content.
+- **Providers supported**: 13+ AI providers including ChatGPT, Claude, Gemini, Grok, Perplexity, DeepSeek, Mistral, Copilot, Meta AI, NotebookLM, Poe, Pi, OpenRouter.
+
+## Pages
+
+- [Home](https://plurihub.com): Product overview, features, CTA to install
+- [Blog](https://plurihub.com/blog): Guides and tips for AI power users
+- [Privacy Policy](https://plurihub.com/privacy): Full data handling disclosure
+- [Terms of Service](https://plurihub.com/terms): Usage terms
+
+## Blog posts
+
+- [Best Chrome Extension for ChatGPT in 2026](https://plurihub.com/blog/best-chrome-extension-chatgpt)
+- [How to Organise Your AI Conversations](https://plurihub.com/blog/how-to-organize-ai-conversations)
+- [Using ChatGPT, Claude, and Gemini Together Without Losing Your Mind](https://plurihub.com/blog/chatgpt-claude-gemini-together)
+- [Why You Keep Losing Your Best AI Conversations (and How to Fix It)](https://plurihub.com/blog/stop-losing-ai-conversations)
+- [The Best AI Prompt Library for Chrome](https://plurihub.com/blog/ai-prompt-library-chrome-extension)
+
+## Contact
+
+- Website: https://plurihub.com
+- Chrome Web Store: https://chromewebstore.google.com/detail/nlgembofcnkejdilolmphpikokljokdk
+- Instagram: https://instagram.com/pluri.hub
+- TikTok: https://tiktok.com/@plurihub

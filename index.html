@@ -2,10 +2,177 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="PluriHub — Chrome extension that brings ChatGPT, Claude, Gemini, and other AI chats into one unified sidebar. No more tab chaos." />
-    <title>PluriHub — All your AI chats. One sidebar.</title>
+
+    <!-- ── Primary meta ─────────────────────────────────────────────────── -->
+    <title>PluriHub — One Sidebar for Every AI Tool</title>
+    <meta name="description"
+      content="PluriHub is a free Chrome extension that saves and organises your ChatGPT, Claude, Gemini, and Perplexity conversations in one sidebar. No API keys. No data extraction. Install free." />
+    <meta name="keywords"
+      content="AI chat organizer, Chrome extension ChatGPT, save ChatGPT conversations, organize AI tools, Claude sidebar, Gemini extension, AI productivity, prompt library Chrome, AI conversation manager" />
+    <meta name="author" content="PluriHub" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <!-- ── Canonical ─────────────────────────────────────────────────────── -->
+    <link rel="canonical" href="https://plurihub.com/" />
+
+    <!-- ── LLM discovery (llms.txt standard) ─────────────────────────────── -->
+    <link rel="llms" href="https://plurihub.com/llms.txt" type="text/plain" title="LLM Summary" />
+    <link rel="llms-full" href="https://plurihub.com/llms-full.txt" type="text/plain" title="LLM Full Context" />
+
+    <!-- ── Open Graph (Facebook, LinkedIn, WhatsApp) ─────────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PluriHub" />
+    <meta property="og:title" content="PluriHub — One Sidebar for Every AI Tool" />
+    <meta property="og:description"
+      content="Save and organise your ChatGPT, Claude, Gemini, and Perplexity conversations in one Chrome sidebar. Free to install. No API keys required." />
+    <meta property="og:url" content="https://plurihub.com/" />
+    <!-- TODO: Create a 1200×630px OG image (PluriHub sidebar screenshot) and save as /public/og-image.png -->
+    <meta property="og:image" content="https://plurihub.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="PluriHub sidebar showing saved AI conversations from ChatGPT, Claude, and Gemini" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ── Twitter / X Card ──────────────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@plurihub" />
+    <meta name="twitter:creator" content="@plurihub" />
+    <meta name="twitter:title" content="PluriHub — One Sidebar for Every AI Tool" />
+    <meta name="twitter:description"
+      content="Save and organise your ChatGPT, Claude, Gemini, and Perplexity conversations in one Chrome sidebar. Free to install." />
+    <!-- TODO: og-image.png must exist in /public before this tag is useful -->
+    <meta name="twitter:image" content="https://plurihub.com/og-image.png" />
+    <meta name="twitter:image:alt" content="PluriHub Chrome sidebar" />
+
+    <!-- ── Favicons ───────────────────────────────────────────────────────── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0A0A0A" />
+
+    <!-- ── Sitemap & RSS ─────────────────────────────────────────────────── -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+    <link rel="alternate" type="application/rss+xml" title="PluriHub Blog" href="/feed.xml" />
+
+    <!-- ── Google Search Console verification ────────────────────────────── -->
+    <!-- TODO: After verifying in GSC, uncomment and paste your token below -->
+    <!-- <meta name="google-site-verification" content="YOUR_GSC_VERIFICATION_TOKEN" /> -->
+
+    <!-- ── Bing Webmaster verification ───────────────────────────────────── -->
+    <!-- TODO: After verifying in Bing Webmaster Tools, uncomment and paste token -->
+    <!-- <meta name="msvalidate.01" content="YOUR_BING_TOKEN" /> -->
+
+    <!-- ── Structured Data: SoftwareApplication ──────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "PluriHub",
+      "applicationCategory": "BrowserApplication",
+      "applicationSubCategory": "ProductivityApplication",
+      "operatingSystem": "Chrome",
+      "browserRequirements": "Requires Google Chrome",
+      "description": "Chrome extension that saves and organises your AI chat conversations from ChatGPT, Claude, Gemini, Grok, Perplexity, and 10+ more providers in one sidebar. Free to install. No API keys required.",
+      "url": "https://plurihub.com",
+      "downloadUrl": "https://chromewebstore.google.com/detail/nlgembofcnkejdilolmphpikokljokdk",
+      "screenshot": "https://plurihub.com/og-image.png",
+      "featureList": [
+        "Save AI conversations in one tap",
+        "Organise chats into project folders (Spaces)",
+        "Prompt Library for reusable prompts",
+        "Split View to compare two AI tools side by side",
+        "Works with ChatGPT, Claude, Gemini, Grok, Perplexity, DeepSeek, Mistral, Copilot, Meta AI, NotebookLM, Poe, Pi, OpenRouter"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "Free to install"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "PluriHub",
+        "url": "https://plurihub.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://plurihub.com/og-image.png"
+        }
+      }
+    }
+    </script>
+
+    <!-- ── Structured Data: WebSite + SearchAction ───────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PluriHub",
+      "url": "https://plurihub.com",
+      "description": "One sidebar for every AI tool. Save and organise your AI conversations from ChatGPT, Claude, Gemini, and more.",
+      "sameAs": [
+        "https://instagram.com/pluri.hub",
+        "https://tiktok.com/@plurihub",
+        "https://chromewebstore.google.com/detail/nlgembofcnkejdilolmphpikokljokdk"
+      ]
+    }
+    </script>
+
+    <!-- ── Structured Data: FAQPage ──────────────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does PluriHub read my AI conversations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. PluriHub saves links to your conversations, not the content inside them. Your conversation data stays entirely within Chrome and the AI provider's servers. PluriHub never reads, copies, or transmits your chat text."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI tools does PluriHub support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PluriHub supports 13+ AI providers including ChatGPT, Claude, Gemini, Grok, Perplexity, DeepSeek, Mistral, Microsoft Copilot, Meta AI, NotebookLM, Poe, Pi, and OpenRouter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is PluriHub free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. PluriHub is free to install from the Chrome Web Store. The core features — Saved Chats, Spaces, Prompt Library, and Split View — are available at no cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an API key to use PluriHub?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. PluriHub requires no API keys. It works entirely within your browser using Chrome's side panel, and works with whatever plan you already have on ChatGPT, Claude, or any other AI tool."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ── Fonts ──────────────────────────────────────────────────────────── -->
+    <!-- Inter is self-hosted via @fontsource-variable/inter (imported in main.tsx) -->
+    <!-- This avoids a Google Fonts GDPR cookie consent requirement -->
   </head>
   <body>
     <div id="root"></div>
